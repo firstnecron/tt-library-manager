@@ -1,0 +1,12 @@
+{
+	"extends": "xo/esnext",
+	"env": {
+		"browser": true,
+		"es6": true,
+		"jquery": true,
+		"node": true
+	},
+	"globals": {
+		"angular": true
+	}
+}

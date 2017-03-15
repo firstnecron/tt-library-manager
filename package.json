@@ -1,0 +1,23 @@
+{
+  "name": "tt-library-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firstnecron/tt-library-manager.git"
+  },
+  "author": "Justin Russo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/firstnecron/tt-library-manager/issues"
+  },
+  "homepage": "https://github.com/firstnecron/tt-library-manager#readme",
+  "devDependencies": {
+    "eslint": "^3.17.1",
+    "eslint-config-xo": "^0.17.0"
+  }
+}

@@ -18,6 +18,11 @@
   "homepage": "https://github.com/firstnecron/tt-library-manager#readme",
   "devDependencies": {
     "eslint": "^3.17.1",
-    "eslint-config-xo": "^0.17.0"
+    "eslint-config-xo": "^0.17.0",
+    "sequelize-cli": "^2.6.0"
+  },
+  "dependencies": {
+    "sequelize": "^3.30.2",
+    "sqlite3": "^3.1.8"
   }
 }

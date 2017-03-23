@@ -35,7 +35,11 @@ gulp.task('scripts', () => {
 });
 
 gulp.task('scripts:client', () => {
-	return gulp.src([`${options.clientSrc}/scripts/main.js`, `${options.clientSrc}/scripts/**/!{main}.js`])
+	return gulp.src([
+		`${options.clientSrc}/scripts/main.js`,
+		`${options.clientSrc}/scripts/main.config.js`,
+		`${options.clientSrc}/scripts/**/!(main|main.config).js`
+	])
 		.pipe(plugins.eslint())
 		.pipe(plugins.eslint.format())
 		.pipe(plugins.eslint.failAfterError())
@@ -44,6 +48,7 @@ gulp.task('scripts:client', () => {
 
 		}))
 		.pipe(plugins.concat('all.min.js'))
+		.pipe(plugins.ngAnnotate())
 		.pipe(plugins.uglify())
 		.pipe(plugins.sourcemaps.write('./'))
 		.pipe(gulp.dest(`${options.dist}/client/scripts`));

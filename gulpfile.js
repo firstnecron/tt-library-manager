@@ -74,13 +74,33 @@ gulp.task('scripts:server', () => {
 gulp.task('vendor:scripts', () => {
 	return gulp.src([
 		`${options.npm}/angular/angular.js`,
-		`${options.npm}/angular-route/angular-route.js`
+		`${options.npm}/angular-animate/angular-animate.js`,
+		`${options.npm}/angular-route/angular-route.js`,
+		`${options.npm}/angular-touch/angular-touch.js`,
+		`${options.npm}/angular-ui-bootstrap/dist/ui-bootstrap.js`
 	])
 		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.concat('vendor.min.js'))
 		.pipe(plugins.uglify())
 		.pipe(plugins.sourcemaps.write('./'))
 		.pipe(gulp.dest(`${options.dist}/client/scripts/`));
+});
+
+gulp.task('vendor:styles', () => {
+	return gulp.src([
+		`${options.npm}/bootstrap/dist/css/bootstrap.css`
+	])
+		.pipe(plugins.sourcemaps.init())
+		.pipe(plugins.concat('vendor.min.css'))
+		.pipe(plugins.cleanCss())
+		.pipe(plugins.sourcemaps.write('./'))
+		.pipe(gulp.dest(`${options.dist}/client/styles/`));
+});
+
+gulp.task('vendor:fonts', () => {
+	return gulp.src(`${options.npm}/bootstrap/fonts/**/*`,
+		{base: `${options.npm}/bootstrap/fonts/`})
+		.pipe(gulp.dest(`${options.dist}/client/fonts/`));
 });
 
 /*
@@ -112,8 +132,7 @@ gulp.task('build', callback => {
 gulp.task('build:client', callback => {
 	return runSequence(
 		'clean:client',
-		['styles', 'scripts:client', 'vendor:scripts', 'html'],
-		// 'html',
+		['styles', 'scripts:client', 'vendor:scripts', 'vendor:styles', 'vendor:fonts', 'html'],
 		callback
 	);
 });

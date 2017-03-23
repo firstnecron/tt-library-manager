@@ -1,4 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 const app = angular.module('app', [
-	'ngRoute'
+	'ngAnimate',
+	'ngRoute',
+	'ngTouch',
+	'ui.bootstrap'
 ]);

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "serve": "gulp build && cd dist && node ./server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -34,6 +35,7 @@
   "dependencies": {
     "angular": "^1.6.3",
     "angular-route": "^1.6.3",
+    "express": "^4.15.2",
     "sequelize": "^3.30.2",
     "sqlite3": "^3.1.8"
   }

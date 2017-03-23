@@ -35,7 +35,7 @@ gulp.task('scripts', () => {
 });
 
 gulp.task('scripts:client', () => {
-	return gulp.src(`${options.clientSrc}/scripts/**/*.js`)
+	return gulp.src([`${options.clientSrc}/scripts/main.js`, `${options.clientSrc}/scripts/**/!{main}.js`])
 		.pipe(plugins.eslint())
 		.pipe(plugins.eslint.format())
 		.pipe(plugins.eslint.failAfterError())

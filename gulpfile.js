@@ -69,7 +69,7 @@ gulp.task('scripts:server', () => {
 gulp.task('vendor:scripts', () => {
 	return gulp.src([
 		`${options.npm}/angular/angular.js`,
-		`${options.npm}/angular-ui-router/release/angular-ui-router.js`
+		`${options.npm}/angular-route/angular-route.js`
 	])
 		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.concat('vendor.min.js'))

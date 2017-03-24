@@ -1,6 +1,7 @@
 const del = require('del');
 const gulp = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
+const merge = require('merge-stream');
 const runSequence = require('run-sequence');
 
 const plugins = gulpLoadPlugins();
@@ -88,7 +89,8 @@ gulp.task('vendor:scripts', () => {
 
 gulp.task('vendor:styles', () => {
 	return gulp.src([
-		`${options.npm}/bootstrap/dist/css/bootstrap.css`
+		`${options.npm}/bootstrap/dist/css/bootstrap.css`,
+		`${options.npm}/font-awesome/css/font-awesome.css`
 	])
 		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.concat('vendor.min.css'))
@@ -98,9 +100,15 @@ gulp.task('vendor:styles', () => {
 });
 
 gulp.task('vendor:fonts', () => {
-	return gulp.src(`${options.npm}/bootstrap/fonts/**/*`,
+	const bootstrap = gulp.src(`${options.npm}/bootstrap/fonts/**/*`,
 		{base: `${options.npm}/bootstrap/fonts/`})
 		.pipe(gulp.dest(`${options.dist}/client/fonts/`));
+
+	const fontAwesome = gulp.src(`${options.npm}/font-awesome/fonts/**/*`,
+		{base: `${options.npm}/font-awesome/fonts/`})
+		.pipe(gulp.dest(`${options.dist}/client/fonts/`));
+
+	return merge(bootstrap, fontAwesome);
 });
 
 /*

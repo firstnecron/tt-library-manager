@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "gulp build && cd dist && node ./server",
+    "serve": "cd dist && node ./server",
+    "serve:build": "gulp build && cd dist && node ./server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

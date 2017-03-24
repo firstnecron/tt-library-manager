@@ -65,9 +65,6 @@ tr .button {
   tr .button:hover {
     background-color: #547798;
   }
-tr:nth-child(2n) {
-  background: #E7E7E7;
-}
 td {
   padding: 5px 20px 5px 10px;
 }

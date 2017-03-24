@@ -1,0 +1,14 @@
+module.exports = {
+	development: {
+		storage: 'library.db',
+		dialect: 'sqlite'
+	},
+	test: {
+		storage: 'library.db',
+		dialect: 'sqlite'
+	},
+	production: {
+		storage: 'library.db',
+		dialect: 'sqlite'
+	}
+};

@@ -3,7 +3,7 @@
 
 	angular.module('app')
 		.service('DataService', function ($location, $http) {
-			const baseUrl = $location.host;
+			const baseUrl = `http://${$location.host()}:${$location.port()}`;
 
 			/*
 				Books

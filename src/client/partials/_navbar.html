@@ -1,8 +1,26 @@
-<nav>
-	<ul>
-		<li><a href="/">Home</a></li>
-		<li><a href="/books">Books</a></li>
-		<li><a href="/patrons">Patrons</a></li>
-		<li><a href="/loans">Loans</a></li>
-	</ul>
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/">
+				<i class="fa fa-book" aria-hidden="true"></i>
+				Library Manager
+			</a>
+		</div>
+		<div class="pull-right">
+			<ul class="nav navbar-nav">
+				<li ng-class="{active: isActive('/')}">
+					<a href="/">Home</a>
+				</li>
+				<li ng-class="{active: isActive('/books')}">
+					<a href="/books">Books</a>
+				</li>
+				<li ng-class="{active: isActive('/patrons')}">
+					<a href="/patrons">Patrons</a>
+				</li>
+				<li ng-class="{active: isActive('/loans')}">
+					<a href="/loans">Loans</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 </nav>

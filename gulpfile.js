@@ -45,9 +45,7 @@ gulp.task('scripts:client', () => {
 		.pipe(plugins.eslint.format())
 		.pipe(plugins.eslint.failAfterError())
 		.pipe(plugins.sourcemaps.init())
-		.pipe(plugins.babel({
-
-		}))
+		.pipe(plugins.babel())
 		.pipe(plugins.concat('all.min.js'))
 		.pipe(plugins.ngAnnotate())
 		.pipe(plugins.uglify())
@@ -62,9 +60,7 @@ gulp.task('scripts:server', () => {
 		.pipe(plugins.eslint.format())
 		.pipe(plugins.eslint.failAfterError())
 		.pipe(plugins.sourcemaps.init())
-		.pipe(plugins.babel({
-
-		}))
+		.pipe(plugins.babel())
 		.pipe(plugins.sourcemaps.write('./'))
 		.pipe(gulp.dest(`${options.dist}/server/`));
 });

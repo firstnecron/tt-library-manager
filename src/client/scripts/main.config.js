@@ -27,8 +27,8 @@
 				controller: 'BooksController',
 				templateUrl: 'templates/books.html'
 			})
-			.state('books.detail', {
-				url: '/:id',
+			.state('book-detail', {
+				url: '/books/:id',
 				controller: 'BookDetailController',
 				templateUrl: 'templates/book-detail.html'
 			})
@@ -47,8 +47,8 @@
 				controller: 'PatronsController',
 				templateUrl: 'templates/patrons.html'
 			})
-			.state('patrons.detail', {
-				url: '/:id',
+			.state('patron-detail', {
+				url: '/patrons/:id',
 				controller: 'PatronDetailController',
 				templateUrl: 'templates/patron-detail.html'
 			})

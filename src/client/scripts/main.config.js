@@ -18,17 +18,17 @@
 				templateUrl: 'templates/books.html'
 			})
 			.state('books.new', {
-				url: '/books/new',
+				url: '/new',
 				controller: 'BooksController',
 				templateUrl: 'templates/books.html'
 			})
 			.state('books.edit', {
-				url: '/books/edit/:id',
+				url: '/edit/:id',
 				controller: 'BooksController',
 				templateUrl: 'templates/books.html'
 			})
 			.state('books.detail', {
-				url: '/books/:id',
+				url: '/:id',
 				controller: 'BookDetailController',
 				templateUrl: 'templates/book-detail.html'
 			})
@@ -38,17 +38,17 @@
 				templateUrl: 'templates/patrons.html'
 			})
 			.state('patrons.new', {
-				url: '/patrons/new',
+				url: '/new',
 				controller: 'PatronsController',
 				templateUrl: 'templates/patrons.html'
 			})
 			.state('patrons.edit', {
-				url: '/patrons/edit/:id',
+				url: '/edit/:id',
 				controller: 'PatronsController',
 				templateUrl: 'templates/patrons.html'
 			})
 			.state('patrons.detail', {
-				url: '/patrons/:id',
+				url: '/:id',
 				controller: 'PatronDetailController',
 				templateUrl: 'templates/patron-detail.html'
 			})

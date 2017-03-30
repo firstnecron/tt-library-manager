@@ -19,13 +19,11 @@
 			})
 			.state('books.new', {
 				url: '/new',
-				controller: 'BooksController',
-				templateUrl: 'templates/books.html'
+				controller: 'BookController'
 			})
 			.state('books.edit', {
 				url: '/edit/:id',
-				controller: 'BooksController',
-				templateUrl: 'templates/books.html'
+				controller: 'BookController'
 			})
 			.state('book-detail', {
 				url: '/books/:id',
@@ -39,13 +37,11 @@
 			})
 			.state('patrons.new', {
 				url: '/new',
-				controller: 'PatronsController',
-				templateUrl: 'templates/patrons.html'
+				controller: 'PatronController'
 			})
 			.state('patrons.edit', {
 				url: '/edit/:id',
-				controller: 'PatronsController',
-				templateUrl: 'templates/patrons.html'
+				controller: 'PatronController'
 			})
 			.state('patron-detail', {
 				url: '/patrons/:id',

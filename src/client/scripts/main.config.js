@@ -5,51 +5,61 @@
 		.module('app')
 		.config(routeConfig);
 
-	function routeConfig($routeProvider, $locationProvider) {
-		$routeProvider
-			.when('/', {
+	function routeConfig($stateProvider, $urlRouterProvider, $locationProvider) {
+		$stateProvider
+			.state('home', {
+				url: '/',
 				controller: 'HomeController',
 				templateUrl: 'templates/home.html'
 			})
-			.when('/books', {
+			.state('books', {
+				url: '/books',
 				controller: 'BooksController',
 				templateUrl: 'templates/books.html'
 			})
-			.when('/books/new', {
+			.state('books.new', {
+				url: '/books/new',
 				controller: 'BooksController',
 				templateUrl: 'templates/books.html'
 			})
-			.when('/books/edit/:id', {
+			.state('books.edit', {
+				url: '/books/edit/:id',
 				controller: 'BooksController',
 				templateUrl: 'templates/books.html'
 			})
-			.when('/books/:id', {
+			.state('books.detail', {
+				url: '/books/:id',
 				controller: 'BookDetailController',
 				templateUrl: 'templates/book-detail.html'
 			})
-			.when('/patrons', {
+			.state('patrons', {
+				url: '/patrons',
 				controller: 'PatronsController',
 				templateUrl: 'templates/patrons.html'
 			})
-			.when('/patrons/new', {
+			.state('patrons.new', {
+				url: '/patrons/new',
 				controller: 'PatronsController',
 				templateUrl: 'templates/patrons.html'
 			})
-			.when('/patrons/edit/:id', {
+			.state('patrons.edit', {
+				url: '/patrons/edit/:id',
 				controller: 'PatronsController',
 				templateUrl: 'templates/patrons.html'
 			})
-			.when('/patrons/:id', {
+			.state('patrons.detail', {
+				url: '/patrons/:id',
 				controller: 'PatronDetailController',
 				templateUrl: 'templates/patron-detail.html'
 			})
-			.when('/loans/:id?', {
+			.state('loans', {
+				url: '/loans/:id?',
 				controller: 'LoansController',
 				templateUrl: 'templates/loans.html'
-			})
-			.otherwise({
-				redirectTo: '/'
 			});
+
+		$urlRouterProvider
+			.otherwise('/');
 
 		$locationProvider.html5Mode(true);
 	}

@@ -14,7 +14,7 @@
 		</thead>
 		<tbody>
 		<tr ng-repeat="patron in patrons">
-			<td><a ui-sref="patrons({id: patron.id})">{{patron.first_name}} {{patron.last_name}}</a></td>
+			<td><a ui-sref="patron-detail({id: patron.id})">{{patron.first_name}} {{patron.last_name}}</a></td>
 			<td>{{patron.address}}</td>
 			<td>{{patron.email}}</td>
 			<td>{{patron.library_id}}</td>

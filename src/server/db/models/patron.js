@@ -31,6 +31,11 @@ module.exports = function (sequelize, DataTypes) {
 		zip_code: {
 			type: DataTypes.INTEGER,
 			allowNull: false
+		},
+		active: {
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
+			default: true
 		}
 		/* eslint-enable camelcase */
 	}, {

@@ -35,7 +35,12 @@ module.exports = function (sequelize, DataTypes) {
 			type: DataTypes.DATE,
 			allowNull: false
 		},
-		returned_on: DataTypes.DATE
+		returned_on: DataTypes.DATE,
+		active: {
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
+			default: true
+		}
 		/* eslint-enable camelcase */
 	}, {
 		timestamps: false,

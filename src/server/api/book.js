@@ -54,7 +54,7 @@ function routes() {
 				});
 		})
 		.delete((req, res) => {
-			req.book.destroy()
+			req.book.update({active: false})
 				.then(() => {
 					res.status(204).send('Book removed');
 				})

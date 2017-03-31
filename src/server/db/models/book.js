@@ -18,7 +18,12 @@ module.exports = function (sequelize, DataTypes) {
 			allowNull: false
 		},
 		genre: DataTypes.STRING,
-		first_published: DataTypes.INTEGER
+		first_published: DataTypes.INTEGER,
+		active: {
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
+			default: true
+		}
 		/* eslint-enable camelcase */
 	}, {
 		timestamps: false,

@@ -54,7 +54,7 @@ function routes() {
 				});
 		})
 		.delete((req, res) => {
-			req.patron.destroy()
+			req.patron.update({active: false})
 				.then(() => {
 					res.status(204).send('Patron removed');
 				})

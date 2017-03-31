@@ -43,10 +43,12 @@
 						$scope.confirmedDelete = false;
 						modal.hide();
 						getPatrons();
+						$scope.$apply();
 					})
 					.catch(error => {
 						$scope.deleteError = error.statusText;
 						$scope.confirmedDelete = false;
+						$scope.$apply();
 					});
 			};
 

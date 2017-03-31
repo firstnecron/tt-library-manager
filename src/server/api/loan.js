@@ -3,6 +3,8 @@
 const express = require('express');
 
 const Loan = require('../db/models').Loan;
+const Book = require('../db/models').Book;
+const Patron = require('../db/models').Patron;
 
 function routes() {
 	const router = new express.Router();
@@ -12,7 +14,13 @@ function routes() {
 		})
 		.get((req, res) => {
 			// Get all loans
-			Loan.findAll({where: {active: true}})
+			Loan.findAll({
+				where: {active: true},
+				include: [
+					{model: Book},
+					{model: Patron}
+				]
+			})
 				.then(loans => {
 					res.json(loans);
 				})

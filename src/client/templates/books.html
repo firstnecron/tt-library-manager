@@ -9,14 +9,26 @@
 				<th>Author</th>
 				<th>Genre</th>
 				<th>Year Released</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="book in books">
-				<td><a href="/books/{{book.id}}">{{book.title}}</a></td>
+				<td><a ui-sref="books({id: book.id})">{{book.title}}</a></td>
 				<td>{{book.author}}</td>
 				<td>{{book.genre}}</td>
 				<td>{{book.first_published}}</td>
+				<td>
+					<a class="btn btn-default" type="button" ui-sref="books.edit({id: book.id})" title="Edit">
+						<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+					</a>
+					<a class="btn btn-info" type="button" ui-sref="books({id: book.id})" title="Details">
+						<i class="fa fa-info" aria-hidden="true"></i>
+					</a>
+					<a class="btn btn-danger" type="button" ng-click="delete(book)" title="Delete">
+						<i class="fa fa-trash-o" aria-hidden="true"></i>
+					</a>
+				</td>
 			</tr>
 		</tbody>
 	</table>

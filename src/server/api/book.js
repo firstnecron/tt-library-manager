@@ -12,7 +12,7 @@ function routes() {
 		})
 		.get((req, res) => {
 			// Get all books
-			Book.findAll()
+			Book.findAll({where: {active: true}})
 				.then(books => {
 					res.json(books);
 				})

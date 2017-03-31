@@ -12,7 +12,7 @@ function routes() {
 		})
 		.get((req, res) => {
 			// Get all patrons
-			Patron.findAll()
+			Patron.findAll({where: {active: true}})
 				.then(patrons => {
 					res.json(patrons);
 				})

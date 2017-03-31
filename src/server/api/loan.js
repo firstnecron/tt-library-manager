@@ -12,7 +12,7 @@ function routes() {
 		})
 		.get((req, res) => {
 			// Get all loans
-			Loan.findAll()
+			Loan.findAll({where: {active: true}})
 				.then(loans => {
 					res.json(loans);
 				})

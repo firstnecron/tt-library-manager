@@ -21,7 +21,8 @@
 				url: '/new',
 				views: {
 					child: {
-						controller: 'BookController'
+						controller: 'BookController',
+						templateUrl: 'templates/book.html'
 					}
 				}
 			})
@@ -29,7 +30,8 @@
 				url: '/edit/:id',
 				views: {
 					child: {
-						controller: 'BookController'
+						controller: 'BookController',
+						templateUrl: 'templates/book.html'
 					}
 				}
 			})

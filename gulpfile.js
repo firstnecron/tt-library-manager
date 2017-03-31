@@ -74,8 +74,7 @@ gulp.task('vendor:scripts', () => {
 		`${options.npm}/angular-animate/angular-animate.js`,
 		`${options.npm}/angular-ui-router/release/angular-ui-router.js`,
 		`${options.npm}/angular-touch/angular-touch.js`,
-		`${options.npm}/bootstrap.native/build.js`,
-		`${options.npm}/angular-ui-bootstrap/dist/ui-bootstrap.js`
+		`${options.npm}/bootstrap.native/build.js`
 	])
 		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.concat('vendor.min.js'))

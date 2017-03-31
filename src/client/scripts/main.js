@@ -2,6 +2,5 @@
 const app = angular.module('app', [
 	'ngAnimate',
 	'ngTouch',
-	'ui.router',
-	'ui.bootstrap'
+	'ui.router'
 ]);

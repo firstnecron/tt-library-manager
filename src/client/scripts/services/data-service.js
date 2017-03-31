@@ -112,5 +112,38 @@
 						});
 				});
 			};
+
+			this.addPatron = function (patronData) {
+				return new Promise((resolve, reject) => {
+					$http.post(`${baseUrl}/api/patrons`, patronData)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
+
+			this.updatePatron = function (patronId, patronData) {
+				return new Promise((resolve, reject) => {
+					$http.put(`${baseUrl}/api/patrons/${patronId}`, patronData)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
+
+			this.removePatron = function (patronId) {
+				return new Promise((resolve, reject) => {
+					$http.delete(`${baseUrl}/api/patrons/${patronId}`)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
 		});
 })();

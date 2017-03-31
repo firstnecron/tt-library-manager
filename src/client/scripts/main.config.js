@@ -15,14 +15,14 @@
 			.state('books', {
 				url: '/books',
 				controller: 'BooksController',
-				templateUrl: 'templates/books.html'
+				templateUrl: 'templates/books/books.html'
 			})
 			.state('books.new', {
 				url: '/new',
 				views: {
 					child: {
 						controller: 'BookController',
-						templateUrl: 'templates/book.html'
+						templateUrl: 'templates/books/book.html'
 					}
 				}
 			})
@@ -31,26 +31,26 @@
 				views: {
 					child: {
 						controller: 'BookController',
-						templateUrl: 'templates/book.html'
+						templateUrl: 'templates/books/book.html'
 					}
 				}
 			})
 			.state('book-detail', {
 				url: '/books/:id',
 				controller: 'BookDetailController',
-				templateUrl: 'templates/book-detail.html'
+				templateUrl: 'templates/books/book-detail.html'
 			})
 			.state('patrons', {
 				url: '/patrons',
 				controller: 'PatronsController',
-				templateUrl: 'templates/patrons.html'
+				templateUrl: 'templates/patrons/patrons.html'
 			})
 			.state('patrons.new', {
 				url: '/new',
 				views: {
 					child: {
 						controller: 'PatronController',
-						templateUrl: 'templates/patron.html'
+						templateUrl: 'templates/patrons/patron.html'
 					}
 				}
 			})
@@ -59,19 +59,19 @@
 				views: {
 					child: {
 						controller: 'PatronController',
-						templateUrl: 'templates/patron.html'
+						templateUrl: 'templates/patrons/patron.html'
 					}
 				}
 			})
 			.state('patron-detail', {
 				url: '/patrons/:id',
 				controller: 'PatronDetailController',
-				templateUrl: 'templates/patron-detail.html'
+				templateUrl: 'templates/patrons/patron-detail.html'
 			})
 			.state('loans', {
 				url: '/loans/:id?',
 				controller: 'LoansController',
-				templateUrl: 'templates/loans.html'
+				templateUrl: 'templates/loans/loans.html'
 			});
 
 		$urlRouterProvider

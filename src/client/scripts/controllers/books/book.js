@@ -14,5 +14,13 @@
 			} else {
 				// New book
 			}
+
+			const modalOptions = {
+				backdrop: 'static',
+				keyboard: false
+			};
+			// eslint-disable-next-line
+			const modal = new Modal($document[0].querySelector('#bookModal'), modalOptions);
+			modal.show();
 		});
 })();

@@ -40,7 +40,7 @@ function routes() {
 			});
 	});
 
-	router.route('/:recipeId')
+	router.route('/:bookId')
 		.get((req, res) => {
 			res.json(req.book);
 		})

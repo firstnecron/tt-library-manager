@@ -30,6 +30,39 @@
 				});
 			};
 
+			this.addBook = function (bookData) {
+				return new Promise((resolve, reject) => {
+					$http.post(`${baseUrl}/api/books`, bookData)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
+
+			this.updateBook = function (bookId, bookData) {
+				return new Promise((resolve, reject) => {
+					$http.put(`${baseUrl}/api/books/${bookId}`, bookData)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
+
+			this.removeBook = function (bookId) {
+				return new Promise((resolve, reject) => {
+					$http.delete(`${baseUrl}/api/books/${bookId}`)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
+
 			/*
 				Loans
 			 */

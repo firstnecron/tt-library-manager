@@ -34,4 +34,27 @@
 		</tbody>
 	</table>
 </div>
+<div confirm-delete-modal id="confirm-delete-modal" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title" id="modal-title">Confirm Delete</h3>
+			</div>
+			<div class="modal-body" id="modal-body">
+				<p>You are about to delete patron '{{itemToDelete.first_name}} {{itemToDelete.last_name}}'</p>
+				<p>{{itemToDelete.address}}, {{itemToDelete.zip_code}}</p>
+				<p>Library ID: {{itemToDelete.library_id}}</p>
+				<p>Are you sure you want to do this?</p>
+				<p class="text-danger" ng-show="deleteError">Error: {{deleteError}}</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger" type="button" ng-click="confirmDelete()">
+					<i class="fa fa-spinner fa-pulse fa-3x fa-fw" ng-show="confirmedDelete"></i>
+					Confirm
+				</button>
+				<button class="btn btn-default" type="button" ng-click="cancelDelete()">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>
 <div ui-view="child"></div>

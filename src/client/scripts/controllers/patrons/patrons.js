@@ -3,7 +3,7 @@
 
 	angular.module('app')
 	// eslint-disable-next-line prefer-arrow-callback
-		.controller('PatronsController', function ($rootScope, $scope, DataService) {
+		.controller('PatronsController', function ($rootScope, $scope, $document, DataService) {
 			function getPatrons() {
 				DataService.getPatrons()
 					.then(patrons => {
@@ -12,7 +12,6 @@
 						});
 					});
 			}
-			getPatrons();
 
 			// Listen to state changes to see if it is patrons
 			// If so, update (re-retrieve) patrons from database
@@ -22,11 +21,42 @@
 				}
 			});
 
-			// When we leave books, remove stateListener
+			const modalElement = $document[0].querySelector('#confirm-delete-modal');
+			const modal = new Modal(modalElement); // eslint-disable-line no-undef
+			$scope.confirmedDelete = false;
+
+			$scope.delete = function (patron) {
+				// Open modal to confirm deletion
+				// Handle button clicks in cancelDelete & confirmDelete
+				$scope.itemToDelete = patron;
+				modal.show();
+			};
+
+			// If confirmation modal was canceled
+			$scope.cancelDelete = function () {
+				modal.hide();
+			};
+
+			$scope.confirmDelete = function () {
+				DataService.removePatron($scope.itemToDelete.id)
+					.then(() => {
+						$scope.confirmedDelete = false;
+						modal.hide();
+						getPatrons();
+					})
+					.catch(error => {
+						$scope.deleteError = error;
+						$scope.confirmedDelete = false;
+					});
+			};
+
+			// When we leave patrons, remove stateListener
 			$scope.$on('$destroy', () => {
 				if (angular.isDefined(stateListener)) {
 					stateListener();
 				}
 			});
+
+			getPatrons();
 		});
 })();

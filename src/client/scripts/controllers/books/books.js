@@ -45,7 +45,7 @@
 						getBooks();
 					})
 					.catch(error => {
-						$scope.deleteError = error;
+						$scope.deleteError = error.statusText;
 						$scope.confirmedDelete = false;
 					});
 			};

@@ -42,6 +42,7 @@
     "angular-touch": "^1.6.3",
     "angular-ui-bootstrap": "^2.5.0",
     "angular-ui-router": "^0.4.2",
+    "body-parser": "^1.17.1",
     "bootstrap": "^3.3.7",
     "bootstrap.native": "^2.0.8",
     "express": "^4.15.2",

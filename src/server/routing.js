@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 
 const bookRouter = require('./api/book.js');
@@ -8,6 +9,8 @@ const loanRouter = require('./api/loan.js');
 const patronRouter = require('./api/patron.js');
 
 const app = express();
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 // API's
 app.use('/api/books', bookRouter);

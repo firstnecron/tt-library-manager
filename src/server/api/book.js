@@ -20,6 +20,49 @@ function routes() {
 					res.status(500).json(error);
 				});
 		});
+
+	/**
+	 * Middleware for single book
+	 * Used for get, put, and remove
+	 * Retrieves 1 book and attatches to req object
+	 */
+	router.use('/:bookId', (req, res, next) => {
+		Book.findById(req.params.bookId)
+			.then(book => {
+				if (book) {
+					req.book = book;
+					return next();
+				}
+				return res.status(404).send('No book found.');
+			})
+			.catch(error => {
+				res.status(500).json(error);
+			});
+	});
+
+	router.route('/:recipeId')
+		.get((req, res) => {
+			res.json(req.book);
+		})
+		.put((req, res) => {
+			req.book.update(req.body)
+				.then(book => {
+					res.json(book);
+				})
+				.catch(error => {
+					res.status(500).json(error);
+				});
+		})
+		.delete((req, res) => {
+			req.book.destroy()
+				.then(() => {
+					res.status(204).send('Book removed');
+				})
+				.catch(error => {
+					res.status(500).json(error);
+				});
+		});
+
 	return router;
 }
 

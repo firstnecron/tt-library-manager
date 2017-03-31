@@ -48,7 +48,6 @@
 				let i = 4;
 				// After 5 seconds, revert
 				let interval = $interval(() => {
-					console.log(i);
 					if (i === 0) {
 						$scope.cancelClicked = false;
 						$interval.cancel(interval);

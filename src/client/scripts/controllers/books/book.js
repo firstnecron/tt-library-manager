@@ -2,14 +2,14 @@
 	'use strict';
 
 	angular.module('app')
-	// eslint-disable-next-line prefer-arrow-callback
+	// eslint-disable-next-line prefer-arrow-callback, max-params
 		.controller('BookController', function ($scope, $state, $document, $interval, DataService) {
 			const modalOptions = {
 				backdrop: 'static',
 				keyboard: false
 			};
 			const modalElement = $document[0].querySelector('#bookModal');
-			const modal = new Modal(modalElement, modalOptions); // eslint-disable-line
+			const modal = new Modal(modalElement, modalOptions); // eslint-disable-line no-undef
 			$scope.cancelClicked = false;
 
 			const bookID = $state.params.id;

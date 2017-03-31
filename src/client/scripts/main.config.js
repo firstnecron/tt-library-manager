@@ -49,7 +49,8 @@
 				url: '/new',
 				views: {
 					child: {
-						controller: 'PatronController'
+						controller: 'PatronController',
+						templateUrl: 'templates/patron.html'
 					}
 				}
 			})
@@ -57,7 +58,8 @@
 				url: '/edit/:id',
 				views: {
 					child: {
-						controller: 'PatronController'
+						controller: 'PatronController',
+						templateUrl: 'templates/patron.html'
 					}
 				}
 			})

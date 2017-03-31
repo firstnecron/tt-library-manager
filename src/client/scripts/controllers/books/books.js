@@ -3,7 +3,7 @@
 
 	angular.module('app')
 	// eslint-disable-next-line prefer-arrow-callback
-		.controller('BooksController', function ($rootScope, $scope, DataService) {
+		.controller('BooksController', function ($rootScope, $scope, $document, DataService) {
 			function getBooks() {
 				DataService.getBooks()
 					.then(books => {
@@ -12,7 +12,6 @@
 						});
 					});
 			}
-			getBooks();
 
 			// Listen to state changes to see if it is books
 			// If so, update (re-retrieve) books from database
@@ -22,11 +21,42 @@
 				}
 			});
 
+			const modalElement = $document[0].querySelector('#confirm-delete-modal');
+			const modal = new Modal(modalElement); // eslint-disable-line no-undef
+			$scope.confirmedDelete = false;
+
+			$scope.delete = function (book) {
+				// Open modal to confirm deletion
+				// Handle button clicks in cancelDelete & confirmDelete
+				$scope.itemToDelete = book;
+				modal.show();
+			};
+
+			// If confirmation modal was canceled
+			$scope.cancelDelete = function () {
+				modal.hide();
+			};
+
+			$scope.confirmDelete = function () {
+				DataService.removeBook($scope.itemToDelete.id)
+					.then(() => {
+						$scope.confirmedDelete = false;
+						modal.hide();
+						getBooks();
+					})
+					.catch(error => {
+						$scope.deleteError = error;
+						$scope.confirmedDelete = false;
+					});
+			};
+
 			// When we leave books, remove stateListener
 			$scope.$on('$destroy', () => {
 				if (angular.isDefined(stateListener)) {
 					stateListener();
 				}
 			});
+
+			getBooks();
 		});
 })();

@@ -5,27 +5,42 @@
 				<h3 class="modal-title" id="modal-title">{{book.title || 'New Book'}}</h3>
 			</div>
 			<div class="modal-body" id="modal-body">
-				<form>
-					<div class="form-group">
+				<form name="bookForm" novalidate>
+					<div class="form-group"
+						 ng-class="{
+						 'has-error' : bookForm.title.$invalid && !bookForm.title.$pristine,
+						 'has-success' : bookForm.title.$valid && !bookForm.title.$pristine
+						 }">
 						<label for="bookTitle">Title</label>
-						<input type="text" class="form-control" id="bookTitle" placeholder="" ng-model="book.title">
+						<input type="text" class="form-control" name="title" id="bookTitle" ng-model="book.title" required>
+						<p ng-show="bookForm.title.$invalid" class="help-block">Title is required.</p>
 					</div>
-					<div class="form-group">
+					<div class="form-group"
+						 ng-class="{
+						 'has-error' : bookForm.author.$invalid && !bookForm.author.$pristine,
+						 'has-success' : bookForm.author.$valid && !bookForm.author.$pristine
+						 }">
 						<label for="bookAuthor">Author</label>
-						<input type="text" class="form-control" id="bookAuthor" placeholder="" ng-model="book.author">
+						<input type="text" class="form-control" name="author" id="bookAuthor" ng-model="book.author" required>
+						<p ng-show="bookForm.author.$invalid" class="help-block">Author is required.</p>
 					</div>
-					<div class="form-group">
+					<div class="form-group"
+						 ng-class="{
+						 'has-error' : bookForm.genre.$invalid && !bookForm.genre.$pristine,
+						 'has-success' : bookForm.genre.$valid && !bookForm.genre.$pristine
+						 }">
 						<label for="bookGenre">Genre</label>
-						<input type="text" class="form-control" id="bookGenre" placeholder="" ng-model="book.genre">
+						<input type="text" class="form-control" name="genre" id="bookGenre" ng-model="book.genre" required>
+						<p ng-show="bookForm.genre.$invalid" class="help-block">Genre is required.</p>
 					</div>
 					<div class="form-group">
 						<label for="bookYear">First Published</label>
-						<input type="number" class="form-control" id="bookYear" placeholder="" ng-model="book.first_published">
+						<input type="number" class="form-control" name="year" id="bookYear" placeholder="" ng-model="book.first_published">
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-primary" type="button" ng-click="save()">Save</button>
+				<button class="btn btn-primary" type="button" ng-click="save()" ng-disabled="bookForm.$invalid">Save</button>
 				<button class="btn btn-default" type="button" ng-click="cancel()" ng-hide="cancelClicked">Cancel</button>
 				<button class="btn btn-danger" type="button" ng-click="confirm()" ng-show="cancelClicked">{{confirmButtonText}}</button>
 			</div>

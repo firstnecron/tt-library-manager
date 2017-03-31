@@ -20,47 +20,6 @@
 				modal.hide();
 			}
 
-			function validateFormData() {
-				const book = $scope.book;
-
-				const $bookTitle = angular.element($document[0].querySelector('#bookTitle'));
-				const $bookAuthor = angular.element($document[0].querySelector('#bookAuthor'));
-				const $bookGenre = angular.element($document[0].querySelector('#bookGenre'));
-
-				let hasTitle = false;
-				let hasAuthor = false;
-				let hasGenre = false;
-
-				if (book && book.title && book.title.length > 0) {
-					hasTitle = true;
-					$bookTitle.parent().removeClass('has-error');
-					$bookTitle.parent().addClass('has-success');
-				} else {
-					$bookTitle.parent().removeClass('has-success');
-					$bookTitle.parent().addClass('has-error');
-				}
-
-				if (book && book.author && book.author.length > 0) {
-					hasAuthor = true;
-					$bookAuthor.parent().removeClass('has-error');
-					$bookAuthor.parent().addClass('has-success');
-				} else {
-					$bookAuthor.parent().removeClass('has-success');
-					$bookAuthor.parent().addClass('has-error');
-				}
-
-				if (book && book.genre && book.genre.length > 0) {
-					hasGenre = true;
-					$bookGenre.parent().removeClass('has-error');
-					$bookGenre.parent().addClass('has-success');
-				} else {
-					$bookGenre.parent().removeClass('has-success');
-					$bookGenre.parent().addClass('has-error');
-				}
-
-				return hasTitle && hasAuthor && hasGenre;
-			}
-
 			$scope.save = function () {
 				function handleSuccess(/* data */) {
 					hideModal(() => {
@@ -72,16 +31,14 @@
 					console.error(error);
 				}
 
-				if (validateFormData()) {
-					if (editing) {
-						DataService.updateBook(bookID, $scope.book)
-							.then(handleSuccess)
-							.catch(handleError);
-					} else {
-						DataService.addBook($scope.book)
-							.then(handleSuccess)
-							.catch(handleError);
-					}
+				if (editing) {
+					DataService.updateBook(bookID, $scope.book)
+						.then(handleSuccess)
+						.catch(handleError);
+				} else {
+					DataService.addBook($scope.book)
+						.then(handleSuccess)
+						.catch(handleError);
 				}
 			};
 

@@ -72,6 +72,14 @@
 				});
 			};
 
+			$scope.$on('$destroy', () => {
+				modal.hide();
+				const $modalBackdropElement = angular.element($document[0].querySelector('.modal-backdrop'));
+				if ($modalBackdropElement) {
+					$modalBackdropElement.remove();
+				}
+			});
+
 			if (bookID) {
 				// Editing book
 				DataService.getBook(bookID)

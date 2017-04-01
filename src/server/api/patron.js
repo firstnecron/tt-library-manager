@@ -4,6 +4,9 @@ const express = require('express');
 
 const Patron = require('../db/models').Patron;
 
+const Loan = require('../db/models').Loan;
+const Book = require('../db/models').Book;
+
 function routes() {
 	const router = new express.Router();
 	router.route('/')
@@ -57,6 +60,26 @@ function routes() {
 			req.patron.update({active: false})
 				.then(() => {
 					res.status(204).send('Patron removed');
+				})
+				.catch(error => {
+					res.status(500).json(error);
+				});
+		});
+
+	router.route('/:patronId/loans')
+		.get((req, res) => {
+			Loan.findAll({
+				where: {
+					patron_id: req.params.patronId, // eslint-disable-line camelcase
+					active: true
+				},
+				include: [
+					{model: Book},
+					{model: Patron}
+				]
+			})
+				.then(loans => {
+					res.json(loans);
 				})
 				.catch(error => {
 					res.status(500).json(error);

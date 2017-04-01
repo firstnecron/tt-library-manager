@@ -3,7 +3,9 @@
 const express = require('express');
 
 const Book = require('../db/models').Book;
+
 const Loan = require('../db/models').Loan;
+const Patron = require('../db/models').Patron;
 
 function routes() {
 	const router = new express.Router();
@@ -70,7 +72,11 @@ function routes() {
 				where: {
 					book_id: req.params.bookId, // eslint-disable-line camelcase
 					active: true
-				}
+				},
+				include: [
+					{model: Book},
+					{model: Patron}
+				]
 			})
 				.then(loans => {
 					res.json(loans);

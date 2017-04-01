@@ -1,0 +1,80 @@
+<h1>Book: {{book.title}}</h1>
+<form name="bookDetailForm" class="form-horizontal" novalidate>
+	<div class="form-group"
+		 ng-class="{
+		 'has-error' : bookDetailForm.title.$invalid && !bookDetailForm.title.$pristine,
+		 'has-success' : bookDetailForm.title.$valid && !bookDetailForm.title.$pristine
+		 }">
+		<label for="title" class="col-sm-2 control-label">Title</label>
+		<div class="col-sm-4">
+			<input id="title" name="title" type="text" class="form-control" ng-model="book.title" required>
+			<p ng-show="bookDetailForm.title.$invalid" class="help-block">Title is required.</p>
+		</div>
+	</div>
+	<div class="form-group"
+		 ng-class="{
+		 'has-error' : bookDetailForm.author.$invalid && !bookDetailForm.author.$pristine,
+		 'has-success' : bookDetailForm.author.$valid && !bookDetailForm.author.$pristine
+		 }">
+		<label for="author" class="col-sm-2 control-label">Author</label>
+		<div class="col-sm-4">
+			<input id="author" name="author" type="text" class="form-control" ng-model="book.author" required>
+			<p ng-show="bookDetailForm.author.$invalid" class="help-block">Author is required.</p>
+		</div>
+	</div>
+	<div class="form-group"
+		 ng-class="{
+		 'has-error' : bookDetailForm.genre.$invalid && !bookDetailForm.genre.$pristine,
+		 'has-success' : bookDetailForm.genre.$valid && !bookDetailForm.genre.$pristine
+		 }">
+		<label for="genre" class="col-sm-2 control-label">Genre</label>
+		<div class="col-sm-4">
+			<input id="genre" name="genre" type="text" class="form-control" ng-model="book.genre" required>
+			<p ng-show="bookDetailForm.genre.$invalid" class="help-block">Genre is required.</p>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="first_published" class="col-sm-2 control-label">First Published</label>
+		<div class="col-sm-4">
+			<input id="first_published" name="first_published" type="number" class="form-control" ng-model="book.first_published">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-4">
+			<button type="submit" class="btn btn-default" ng-click="goBack()" ng-show="updated">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				View All Books
+			</button>
+			<button type="submit" class="btn btn-primary" ng-click="save()" ng-disabled="bookDetailForm.$invalid">Update</button>
+		</div>
+	</div>
+</form>
+<h2>Loan History</h2>
+<div class="table-responsive">
+	<table class="table table-hover">
+		<thead>
+		<tr>
+			<th>Book</th>
+			<th>Patron</th>
+			<th>Loaned on</th>
+			<th>Return by</th>
+			<th>Returned on</th>
+			<th>Action</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="loan in loans">
+			<td><a ui-sref="book-detail({id: loan.book_id})">{{loan.Book.title}}</a></td>
+			<td><a ui-sref="patron-detail({id: loan.patron_id})">{{loan.Patron.first_name}} {{loan.Patron.last_name}}</a></td>
+			<td>{{loan.loaned_on}}</td>
+			<td>{{loan.return_by}}</td>
+			<td>{{loan.returned_on}}</td>
+			<td>
+				<button ng-if="!loan.returned_on" class="btn btn-primary" type="button" ng-click="returnBook()" title="Return Book">
+					<i class="fa fa-check-square-o" aria-hidden="true"></i> Return Book
+				</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>

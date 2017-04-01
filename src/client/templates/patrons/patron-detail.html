@@ -1,0 +1,107 @@
+<h1>Book: {{book.title}}</h1>
+<form name="patronDetailForm" class="form-horizontal" novalidate>
+	<div class="form-group"
+		 ng-class="{
+		 'has-error' : patronDetailForm.first_name.$invalid && !patronDetailForm.first_name.$pristine,
+		 'has-success' : patronDetailForm.first_name.$valid && !patronDetailForm.first_name.$pristine
+		 }">
+		<label for="patronFirstName" class="col-sm-2 control-label">First Name</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" name="first_name" id="patronFirstName" ng-model="patron.first_name" required>
+			<p ng-show="patronDetailForm.first_name.$invalid" class="help-block">First name is required.</p>
+		</div>
+	</div>
+	<div class="form-group"
+		 ng-class="{
+		 'has-error' : patronDetailForm.last_name.$invalid && !patronDetailForm.last_name.$pristine,
+		 'has-success' : patronDetailForm.last_name.$valid && !patronDetailForm.last_name.$pristine
+		 }">
+		<label for="patronLastName" class="col-sm-2 control-label">Last Name</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" name="last_name" id="patronLastName" ng-model="patron.last_name" required>
+			<p ng-show="patronDetailForm.last_name.$invalid" class="help-block">Last name is required.</p>
+		</div>
+	</div>
+	<div class="form-group"
+		 ng-class="{
+		 'has-error' : patronDetailForm.address.$invalid && !patronDetailForm.address.$pristine,
+		 'has-success' : patronDetailForm.address.$valid && !patronDetailForm.address.$pristine
+		 }">
+		<label for="patronAddress" class="col-sm-2 control-label">Address</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" name="address" id="patronAddress" ng-model="patron.address" required>
+			<p ng-show="patronDetailForm.address.$invalid" class="help-block">Address is required.</p>
+		</div>
+	</div>
+	<div class="form-group"
+		 ng-class="{
+		 'has-error' : patronDetailForm.email.$invalid && !patronDetailForm.email.$pristine,
+		 'has-success' : patronDetailForm.email.$valid && !patronDetailForm.email.$pristine
+		 }">
+		<label for="patronEmail" class="col-sm-2 control-label">Email</label>
+		<div class="col-sm-4">
+			<input type="email" class="form-control" name="email" id="patronEmail" ng-model="patron.email" required>
+			<p ng-show="patronDetailForm.email.$invalid" class="help-block">Email is required.</p>
+		</div>
+	</div>
+	<div class="form-group"
+		 ng-class="{
+		 'has-error' : patronDetailForm.library_id.$invalid && !patronDetailForm.library_id.$pristine,
+		 'has-success' : patronDetailForm.library_id.$valid && !patronDetailForm.library_id.$pristine
+		 }">
+		<label for="patronLibraryId" class="col-sm-2 control-label">Library ID</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" name="library_id" id="patronLibraryId" ng-model="patron.library_id" required>
+			<p ng-show="patronDetailForm.library_id.$invalid" class="help-block">Library ID is required.</p>
+		</div>
+	</div>
+	<div class="form-group"
+		 ng-class="{
+		 'has-error' : patronDetailForm.zip_code.$invalid && !patronDetailForm.zip_code.$pristine,
+		 'has-success' : patronDetailForm.zip_code.$valid && !patronDetailForm.zip_code.$pristine
+		 }">
+		<label for="patronZip" class="col-sm-2 control-label">Zip Code</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" name="zip_code" id="patronZip" ng-model="patron.zip_code" required>
+			<p ng-show="patronDetailForm.zip_code.$invalid" class="help-block">Zip Code is required.</p>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-4">
+			<button type="submit" class="btn btn-default" ng-click="goBack()" ng-show="updated">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				View All Patrons
+			</button>
+			<button type="submit" class="btn btn-primary" ng-click="save()" ng-disabled="bookDetailForm.$invalid">Update</button>
+		</div>
+	</div>
+</form>
+<h2>Loan History</h2>
+<div class="table-responsive">
+	<table class="table table-hover">
+		<thead>
+		<tr>
+			<th>Book</th>
+			<th>Patron</th>
+			<th>Loaned on</th>
+			<th>Return by</th>
+			<th>Returned on</th>
+			<th>Action</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="loan in loans">
+			<td><a ui-sref="book-detail({id: loan.book_id})">{{loan.Book.title}}</a></td>
+			<td><a ui-sref="patron-detail({id: loan.patron_id})">{{loan.Patron.first_name}} {{loan.Patron.last_name}}</a></td>
+			<td>{{loan.loaned_on}}</td>
+			<td>{{loan.return_by}}</td>
+			<td>{{loan.returned_on}}</td>
+			<td>
+				<button ng-if="!loan.returned_on" class="btn btn-primary" type="button" ng-click="returnBook()" title="Return Book">
+					<i class="fa fa-check-square-o" aria-hidden="true"></i> Return Book
+				</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>

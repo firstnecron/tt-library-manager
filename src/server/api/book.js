@@ -3,6 +3,7 @@
 const express = require('express');
 
 const Book = require('../db/models').Book;
+const Loan = require('../db/models').Loan;
 
 function routes() {
 	const router = new express.Router();
@@ -57,6 +58,22 @@ function routes() {
 			req.book.update({active: false})
 				.then(() => {
 					res.status(204).send('Book removed');
+				})
+				.catch(error => {
+					res.status(500).json(error);
+				});
+		});
+
+	router.route('/:bookId/loans')
+		.get((req, res) => {
+			Loan.findAll({
+				where: {
+					book_id: req.params.bookId, // eslint-disable-line camelcase
+					active: true
+				}
+			})
+				.then(loans => {
+					res.json(loans);
 				})
 				.catch(error => {
 					res.status(500).json(error);

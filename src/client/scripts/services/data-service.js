@@ -77,6 +77,17 @@
 				});
 			};
 
+			this.getLoansForBook = function (bookId) {
+				return new Promise((resolve, reject) => {
+					$http.get(`${baseUrl}/api/books/${bookId}/loans`)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
+
 			this.getLoan = function (loanId) {
 				return new Promise((resolve, reject) => {
 					$http.get(`${baseUrl}/api/loans/${loanId}`)

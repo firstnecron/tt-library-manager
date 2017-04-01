@@ -88,6 +88,17 @@
 				});
 			};
 
+			this.getLoansForPatron = function (patronId) {
+				return new Promise((resolve, reject) => {
+					$http.get(`${baseUrl}/api/patrons/${patronId}/loans`)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
+
 			this.getLoan = function (loanId) {
 				return new Promise((resolve, reject) => {
 					$http.get(`${baseUrl}/api/loans/${loanId}`)

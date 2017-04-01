@@ -57,7 +57,7 @@
 						 'has-success' : patronForm.zip_code.$valid && !patronForm.zip_code.$pristine
 						 }">
 						<label for="patronZip">Zip Code</label>
-						<input type="text" class="form-control" name="zip_code" id="patronZip" ng-model="patron.zip_code" required>
+						<input type="number" class="form-control" name="zip_code" id="patronZip" ng-model="patron.zip_code" required>
 						<p ng-show="patronForm.zip_code.$invalid" class="help-block">Zip Code is required.</p>
 					</div>
 				</form>

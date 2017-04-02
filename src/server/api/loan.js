@@ -46,7 +46,13 @@ function routes() {
 	 * Retrieves 1 loan and attatches to req object
 	 */
 	router.use('/:loanId', (req, res, next) => {
-		Loan.findById(req.params.loanId)
+		Loan.findAll({
+			where: {id: req.params.loanId},
+			include: [
+				{model: Book},
+				{model: Patron}
+			]
+		})
 			.then(loan => {
 				if (loan) {
 					req.loan = loan;

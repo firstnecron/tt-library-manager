@@ -36,7 +36,7 @@
 				}
 			})
 			.state('book-detail', {
-				url: '/books/:id',
+				url: '/books/detail/:id',
 				controller: 'BookDetailController',
 				templateUrl: 'templates/books/book-detail.html'
 			})
@@ -64,7 +64,7 @@
 				}
 			})
 			.state('patron-detail', {
-				url: '/patrons/:id',
+				url: '/patrons/detail/:id',
 				controller: 'PatronDetailController',
 				templateUrl: 'templates/patrons/patron-detail.html'
 			})

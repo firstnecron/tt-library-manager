@@ -1,6 +1,6 @@
 <h1>Books</h1>
 <p> <a ui-sref="books.new" class="button">Create New Book</a></p>
-<p>Filters <a ui-sref="books">All</a> | <a ui-sref="books({type: overdue})">Overdue</a> | <a ui-sref="books({type: out})">Checked Out</a></p>
+<p>Filters <a ui-sref="books({type: 'all'})">All</a> | <a ui-sref="books({type: 'overdue'})">Overdue</a> | <a ui-sref="books({type: 'out'})">Checked Out</a></p>
 <div class="">
 	<table class="table table-hover" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs">
 		<thead>

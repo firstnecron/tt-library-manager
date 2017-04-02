@@ -69,9 +69,27 @@
 				templateUrl: 'templates/patrons/patron-detail.html'
 			})
 			.state('loans', {
-				url: '/loans/:id?',
+				url: '/loans',
 				controller: 'LoansController',
 				templateUrl: 'templates/loans/loans.html'
+			})
+			.state('loans.new', {
+				url: '/new',
+				views: {
+					child: {
+						controller: 'LoanController',
+						templateUrl: 'templates/loans/loan.html'
+					}
+				}
+			})
+			.state('loans.return', {
+				url: '/return/:id',
+				views: {
+					child: {
+						controller: 'LoanController',
+						templateUrl: 'templates/loans/loan.html'
+					}
+				}
 			});
 
 		$urlRouterProvider

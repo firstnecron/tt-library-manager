@@ -1,0 +1,77 @@
+<div id="loan-modal" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title" id="modal-title">{{returning ? 'Return Book' : 'New Loan'}}</h3>
+			</div>
+			<div class="modal-body" id="modal-body">
+				<form name="loanForm" novalidate>
+					<div class="form-group"
+						 ng-class="{
+						 'has-error' : loanForm.book_id.$invalid && !loanForm.book_id.$pristine,
+						 'has-success' : loanForm.book_id.$valid && !loanForm.book_id.$pristine
+						 }">
+						<label for="book_id">Book</label>
+						<select name="book_id" id="book_id" class="form-control"
+								ng-options="book.id as book.title for book in books |
+								orderBy: 'title' track by book.id" ng-model="loan.book_id" required
+								ng-disabled="returning"
+						>
+							<option value="">{{returning ? loan.Book.title : 'Select book...'}}</option>
+						</select>
+						<p ng-show="loanForm.book_id.$invalid" class="help-block">Please select a book.</p>
+					</div>
+					<div class="form-group"
+						 ng-class="{
+						 'has-error' : loanForm.patron_id.$invalid && !loanForm.patron_id.$pristine,
+						 'has-success' : loanForm.patron_id.$valid && !loanForm.patron_id.$pristine
+						 }">
+						<label for="patron_id">Patron</label>
+						<select name="patron_id" id="patron_id" class="form-control"
+								ng-options="patron.id as (patron.first_name + ' ' + patron.last_name) for patron in patrons |
+								orderBy: ['first_name', 'last_name'] track by patron.id" ng-model="loan.patron_id" required
+								ng-disabled="returning"
+						>
+							<option value="">{{returning ? loan.Patron.first_name + ' ' + loan.Patron.last_name : 'Select patron...'}}</option>
+						</select>
+						<p ng-show="loanForm.patron_id.$invalid" class="help-block">Please select a patron.</p>
+					</div>
+					<div class="form-group"
+						 ng-class="{
+						 'has-error' : loanForm.loaned_on.$invalid && !loanForm.loaned_on.$pristine,
+						 'has-success' : loanForm.loaned_on.$valid && !loanForm.loaned_on.$pristine
+						 }">
+						<label for="loaned_on">Loaned On</label>
+						<input type="date" class="form-control" name="loaned_on" id="loaned_on" ng-model="loan.loaned_on" placeholder="{{returning ? loan.loaned_on : ''}}" required ng-disabled="returning">
+						<p ng-show="loanForm.loaned_on.$invalid && !loanForm.loaned_on.$pristine" class="help-block">Loaned on date is required.</p>
+						<p ng-show="loanForm.loaned_on.$invalid && loanForm.loaned_on.$pristine" class="help-block">Please enter a valid loaned on date.</p>
+					</div>
+					<div class="form-group"
+						 ng-class="{
+						 'has-error' : loanForm.return_by.$invalid && !loanForm.return_by.$pristine,
+						 'has-success' : loanForm.return_by.$valid && !loanForm.return_by.$pristine
+						 }">
+						<label for="return_by">Return By</label>
+						<input type="date" class="form-control" name="return_by" id="return_by" ng-model="loan.return_by" placeholder="{{returning ? loan.return_by : ''}}" ng-disabled="returning">
+						<p ng-show="loanForm.return_by.$invalid && !loanForm.return_by.$pristine" class="help-block">Please enter a valid return by date.</p>
+					</div>
+					<div class="form-group" ng-if="returning"
+						 ng-class="{
+						 'has-error' : loanForm.return_by.$invalid && !loanForm.return_by.$pristine,
+						 'has-success' : loanForm.return_by.$valid && !loanForm.return_by.$pristine
+						 }">
+						<label for="returned_on">Returned on</label>
+						<input type="date" class="form-control" name="returned_on" id="returned_on" required ng-model="loan.returned_on">
+						<p ng-show="loanForm.returned_on.$invalid && !loanForm.returned_on.$pristine" class="help-block">Returned on date is required.</p>
+						<p ng-show="loanForm.returned_on.$invalid && loanForm.returned_on.$pristine" class="help-block">Please enter a valid returned on date.</p>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" type="button" ng-click="save()" ng-disabled="loanForm.$invalid">{{returning ? 'Return Book' : 'Create New Loan'}}</button>
+				<button class="btn btn-default" type="button" ng-click="cancel()" ng-hide="cancelClicked" confirm-cancel-button>Cancel</button>
+				<button class="btn btn-danger" type="button" ng-click="confirm()" ng-show="cancelClicked">{{confirmButtonText}}</button>
+			</div>
+		</div>
+	</div>
+</div>

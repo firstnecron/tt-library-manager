@@ -79,7 +79,7 @@ function routes() {
 				.then(loans => {
 					const books = [];
 					for (let i = 0; i < loans.length; i++) {
-						books.push(loans[0].Book);
+						books.push(loans[i].Book);
 					}
 					res.json(books);
 				})
@@ -108,7 +108,7 @@ function routes() {
 				.then(loans => {
 					const books = [];
 					for (let i = 0; i < loans.length; i++) {
-						books.push(loans[0].Book);
+						books.push(loans[i].Book);
 					}
 					res.json(books);
 				})

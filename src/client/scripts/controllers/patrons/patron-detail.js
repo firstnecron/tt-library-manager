@@ -3,7 +3,7 @@
 
 	angular.module('app')
 	// eslint-disable-next-line prefer-arrow-callback, max-params
-		.controller('PatronDetailController', function ($scope, $state, DataService, DTOptionsBuilder, DTColumnDefBuilder) {
+		.controller('PatronDetailController', function ($rootScope, $scope, $state, DataService, DTOptionsBuilder, DTColumnDefBuilder) {
 			const patronID = $state.params.id;
 			$scope.updated = false;
 
@@ -22,6 +22,14 @@
 				DTColumnDefBuilder.newColumnDef(5).notSortable()
 			];
 
+			function goBack() {
+				if ($rootScope.fromState && $rootScope.fromState.fromState) {
+					return $state.go($rootScope.fromState.fromState.name, $rootScope.fromState.fromParams);
+				}
+
+				return $state.go('^');
+			}
+
 			$scope.save = function () {
 				if ($scope.patronDetailForm.$pristine) {
 					$scope.updated = true;
@@ -38,9 +46,7 @@
 				}
 			};
 
-			$scope.goBack = function () {
-				$state.go('patrons');
-			};
+			$scope.goBack = goBack;
 
 			if (patronID) {
 				// Editing patron
@@ -57,7 +63,7 @@
 						$scope.$apply();
 					});
 			} else {
-				$state.go('patrons');
+				goBack();
 			}
 		});
 })();

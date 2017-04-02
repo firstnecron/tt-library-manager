@@ -4,7 +4,7 @@
 	angular.module('app')
 	/* global moment */
 	// eslint-disable-next-line prefer-arrow-callback, max-params
-		.controller('LoanController', function ($scope, $state, $document, $interval, DataService) {
+		.controller('LoanController', function ($rootScope, $scope, $state, $document, $interval, DataService) {
 			const dateFormat = 'YYYY-MM-DD';
 			const modalOptions = {
 				backdrop: 'static',
@@ -33,14 +33,18 @@
 				return loan;
 			}
 
-			function goBackState() {
-				$state.go('^');
+			function goBack() {
+				if ($rootScope.fromState && $rootScope.fromState.fromState) {
+					return $state.go($rootScope.fromState.fromState.name, $rootScope.fromState.fromParams);
+				}
+
+				return $state.go('^');
 			}
 
 			$scope.save = function () {
 				function handleSuccess(/* data */) {
 					hideModal(() => {
-						goBackState();
+						goBack();
 					});
 				}
 
@@ -63,7 +67,7 @@
 
 			$scope.confirm = function () {
 				hideModal(() => {
-					goBackState();
+					goBack();
 				});
 			};
 
@@ -112,7 +116,7 @@
 					})
 					.catch(error => {
 						console.error(error);
-						goBackState();
+						goBack();
 					});
 			}
 		});

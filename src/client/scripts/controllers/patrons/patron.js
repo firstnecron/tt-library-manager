@@ -3,7 +3,7 @@
 
 	angular.module('app')
 	// eslint-disable-next-line prefer-arrow-callback, max-params
-		.controller('PatronController', function ($scope, $state, $document, $interval, DataService) {
+		.controller('PatronController', function ($rootScope, $scope, $state, $document, $interval, DataService) {
 			const modalOptions = {
 				backdrop: 'static',
 				keyboard: false
@@ -20,10 +20,18 @@
 				modal.hide();
 			}
 
+			function goBack() {
+				if ($rootScope.fromState && $rootScope.fromState.fromState) {
+					return $state.go($rootScope.fromState.fromState.name, $rootScope.fromState.fromParams);
+				}
+
+				return $state.go('^');
+			}
+
 			$scope.save = function () {
 				function handleSuccess(/* data */) {
 					hideModal(() => {
-						$state.go('patrons');
+						goBack();
 					});
 				}
 
@@ -68,7 +76,7 @@
 
 			$scope.confirm = function () {
 				hideModal(() => {
-					$state.go('patrons');
+					goBack();
 				});
 			};
 

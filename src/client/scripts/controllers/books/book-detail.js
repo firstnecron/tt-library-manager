@@ -3,7 +3,7 @@
 
 	angular.module('app')
 	// eslint-disable-next-line prefer-arrow-callback, max-params
-		.controller('BookDetailController', function ($scope, $state, DataService, DTOptionsBuilder, DTColumnDefBuilder) {
+		.controller('BookDetailController', function ($rootScope, $scope, $state, DataService, DTOptionsBuilder, DTColumnDefBuilder) {
 			const bookID = $state.params.id;
 			$scope.updated = false;
 
@@ -22,6 +22,14 @@
 				DTColumnDefBuilder.newColumnDef(5).notSortable()
 			];
 
+			function goBack() {
+				if ($rootScope.fromState && $rootScope.fromState.fromState) {
+					return $state.go($rootScope.fromState.fromState.name, $rootScope.fromState.fromParams);
+				}
+
+				return $state.go('^');
+			}
+
 			$scope.save = function () {
 				if ($scope.bookDetailForm.$pristine) {
 					$scope.updated = true;
@@ -38,9 +46,7 @@
 				}
 			};
 
-			$scope.goBack = function () {
-				$state.go('books');
-			};
+			$scope.goBack = goBack;
 
 			if (bookID) {
 				// Editing book
@@ -57,7 +63,7 @@
 						$scope.$apply();
 					});
 			} else {
-				$state.go('books');
+				goBack();
 			}
 		});
 })();

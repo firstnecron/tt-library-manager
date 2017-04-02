@@ -3,7 +3,8 @@
 
 	angular
 		.module('app')
-		.config(routeConfig);
+		.config(routeConfig)
+		.run(run);
 
 	function routeConfig($stateProvider, $urlRouterProvider, $locationProvider) {
 		$stateProvider
@@ -96,5 +97,15 @@
 			.otherwise('/');
 
 		$locationProvider.html5Mode(true);
+	}
+
+	function run($rootScope) {
+		// eslint-disable-next-line max-params
+		$rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) => {
+			$rootScope.fromState = {
+				fromState,
+				fromParams
+			};
+		});
 	}
 })();

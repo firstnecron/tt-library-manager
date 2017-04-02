@@ -1,7 +1,5 @@
 'use strict';
 
-const moment = require('moment');
-
 module.exports = {
 	up(queryInterface/* , Sequelize */) {
 		/**

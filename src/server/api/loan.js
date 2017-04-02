@@ -40,6 +40,53 @@ function routes() {
 				});
 		});
 
+	// Get active (currently taken out) loans
+	router.route('/active')
+		.get((req, res) => {
+			// Get all loans
+			Loan.findAll({
+				where: {
+					active: true,
+					returned_on: null // eslint-disable-line camelcase
+				},
+				include: [
+					{model: Book},
+					{model: Patron}
+				]
+			})
+				.then(loans => {
+					res.json(loans);
+				})
+				.catch(error => {
+					res.status(500).json(error);
+				});
+		});
+
+	// Get overdue (currently taken out & past date) loans
+	router.route('/overdue')
+		.get((req, res) => {
+			// Get all loans
+			Loan.findAll({
+				where: {
+					active: true,
+					returned_on: null, // eslint-disable-line camelcase
+					return_by: { // eslint-disable-line camelcase
+						$lt: new Date()
+					}
+				},
+				include: [
+					{model: Book},
+					{model: Patron}
+				]
+			})
+				.then(loans => {
+					res.json(loans);
+				})
+				.catch(error => {
+					res.status(500).json(error);
+				});
+		});
+
 	/**
 	 * Middleware for single loan
 	 * Used for get, put, and remove

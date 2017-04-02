@@ -54,8 +54,8 @@ function routes() {
 			]
 		})
 			.then(loan => {
-				if (loan) {
-					req.loan = loan;
+				if (loan && loan[0]) {
+					req.loan = loan[0];
 					return next();
 				}
 				return res.status(404).send('No loan found.');

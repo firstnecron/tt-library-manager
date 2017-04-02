@@ -3,14 +3,35 @@
 
 	angular.module('app')
 	// eslint-disable-next-line prefer-arrow-callback, max-params
-		.controller('BooksController', function ($rootScope, $scope, $document, DataService, DTOptionsBuilder, DTColumnDefBuilder) {
+		.controller('BooksController', function ($rootScope, $scope, $state, $document, DataService, DTOptionsBuilder, DTColumnDefBuilder) {
+			const booksType = $state.params.type;
 			function getBooks() {
-				DataService.getBooks()
-					.then(books => {
-						$scope.$apply(() => {
-							$scope.books = books;
-						});
-					});
+				switch (booksType) {
+					case 'overdue':
+						DataService.getOverdueBooks()
+							.then(books => {
+								$scope.$apply(() => {
+									$scope.books = books;
+								});
+							});
+						break;
+					case 'out':
+						DataService.getCheckedOutBooks()
+							.then(books => {
+								$scope.$apply(() => {
+									$scope.books = books;
+								});
+							});
+						break;
+					default:
+						DataService.getBooks()
+							.then(books => {
+								$scope.$apply(() => {
+									$scope.books = books;
+								});
+							});
+						break;
+				}
 			}
 
 			$scope.dtOptions = DTOptionsBuilder

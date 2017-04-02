@@ -3,14 +3,34 @@
 
 	angular.module('app')
 	// eslint-disable-next-line prefer-arrow-callback, max-params
-		.controller('LoansController', function ($rootScope, $scope, DataService, DTOptionsBuilder, DTColumnDefBuilder) {
+		.controller('LoansController', function ($rootScope, $scope, $state, DataService, DTOptionsBuilder, DTColumnDefBuilder) {
+			const loansType = $state.params.type;
 			function getLoans() {
-				DataService.getLoans()
-					.then(loans => {
-						$scope.$apply(() => {
-							$scope.loans = loans;
-						});
-					});
+				switch (loansType) {
+					case 'overdue':
+						DataService.getOverdueLoans()
+							.then(loans => {
+								$scope.$apply(() => {
+									$scope.loans = loans;
+								});
+							});
+						break;
+					case 'out':
+						DataService.getCheckedOutLoans()
+							.then(loans => {
+								$scope.$apply(() => {
+									$scope.loans = loans;
+								});
+							});
+						break;
+					default:
+						DataService.getLoans()
+							.then(loans => {
+								$scope.$apply(() => {
+									$scope.loans = loans;
+								});
+							});
+				}
 			}
 
 			$scope.dtOptions = DTOptionsBuilder

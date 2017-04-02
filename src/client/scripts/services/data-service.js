@@ -30,6 +30,28 @@
 				});
 			};
 
+			this.getOverdueBooks = function () {
+				return new Promise((resolve, reject) => {
+					$http.get(`${baseUrl}/api/books/overdue`)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
+
+			this.getCheckedOutBooks = function () {
+				return new Promise((resolve, reject) => {
+					$http.get(`${baseUrl}/api/books/checked_out`)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
+
 			this.getBook = function (bookId) {
 				return new Promise((resolve, reject) => {
 					$http.get(`${baseUrl}/api/books/${bookId}`)
@@ -102,6 +124,28 @@
 			this.getLoansForPatron = function (patronId) {
 				return new Promise((resolve, reject) => {
 					$http.get(`${baseUrl}/api/patrons/${patronId}/loans`)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
+
+			this.getOverdueLoans = function () {
+				return new Promise((resolve, reject) => {
+					$http.get(`${baseUrl}/api/loans/overdue`)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
+
+			this.getCheckedOutLoans = function () {
+				return new Promise((resolve, reject) => {
+					$http.get(`${baseUrl}/api/loans/checked_out`)
 						.then(successResponse => {
 							resolve(successResponse.data);
 						}, errorResponse => {

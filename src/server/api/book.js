@@ -62,6 +62,61 @@ function routes() {
 				});
 		});
 
+	// Get active (currently taken out) books
+	router.route('/checked_out')
+		.get((req, res) => {
+			// Get all loans
+			Loan.findAll({
+				where: {
+					active: true,
+					returned_on: null // eslint-disable-line camelcase
+				},
+				include: [
+					{model: Book},
+					{model: Patron}
+				]
+			})
+				.then(loans => {
+					const books = [];
+					for (let i = 0; i < loans.length; i++) {
+						books.push(loans[0].Book);
+					}
+					res.json(books);
+				})
+				.catch(error => {
+					res.status(500).json(error);
+				});
+		});
+
+	// Get overdue (currently taken out & past date) books
+	router.route('/overdue')
+		.get((req, res) => {
+			// Get all loans
+			Loan.findAll({
+				where: {
+					active: true,
+					returned_on: null, // eslint-disable-line camelcase
+					return_by: { // eslint-disable-line camelcase
+						$lt: new Date()
+					}
+				},
+				include: [
+					{model: Book},
+					{model: Patron}
+				]
+			})
+				.then(loans => {
+					const books = [];
+					for (let i = 0; i < loans.length; i++) {
+						books.push(loans[0].Book);
+					}
+					res.json(books);
+				})
+				.catch(error => {
+					res.status(500).json(error);
+				});
+		});
+
 	/**
 	 * Middleware for single book
 	 * Used for get, put, and remove

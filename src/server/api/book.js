@@ -45,7 +45,10 @@ function routes() {
 				include: [{
 					model: Loan,
 					required: false,
-					where: {active: true}
+					where: {
+						active: true,
+						returned_on: null // eslint-disable-line camelcase
+					}
 				}]
 			})
 				.then(books => {

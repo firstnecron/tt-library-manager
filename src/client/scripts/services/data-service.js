@@ -110,6 +110,39 @@
 				});
 			};
 
+			this.addLoan = function (loanData) {
+				return new Promise((resolve, reject) => {
+					$http.post(`${baseUrl}/api/loans`, loanData)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
+
+			this.updateLoan = function (loanId, loanData) {
+				return new Promise((resolve, reject) => {
+					$http.put(`${baseUrl}/api/loans/${loanId}`, loanData)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
+
+			this.removeLoan = function (loanId) {
+				return new Promise((resolve, reject) => {
+					$http.delete(`${baseUrl}/api/loans/${loanId}`)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
+
 			/*
 				Patrons
 			 */

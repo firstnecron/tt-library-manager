@@ -28,14 +28,14 @@ module.exports = function (sequelize, DataTypes) {
 			}
 		},
 		loaned_on: {
-			type: DataTypes.DATE,
+			type: DataTypes.DATEONLY,
 			allowNull: false
 		},
 		return_by: {
-			type: DataTypes.DATE,
+			type: DataTypes.DATEONLY,
 			allowNull: false
 		},
-		returned_on: DataTypes.DATE,
+		returned_on: DataTypes.DATEONLY,
 		active: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,

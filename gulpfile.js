@@ -26,7 +26,7 @@ gulp.task('html', () => {
 		.pipe(gulp.dest(`${options.dist}/client/`));
 });
 
-gulp.task('seed_db', () => {
+gulp.task('seed_db', ['clean:db'], () => {
 	return gulp.src(`library.db`)
 		.pipe(gulp.dest(`${options.dist}/`));
 });

@@ -41,7 +41,7 @@ function routes() {
 		});
 
 	// Get active (currently taken out) loans
-	router.route('/active')
+	router.route('/checked_out')
 		.get((req, res) => {
 			// Get all loans
 			Loan.findAll({

@@ -28,8 +28,9 @@ module.exports = function (sequelize, DataTypes) {
 	}, {
 		timestamps: false,
 		classMethods: {
-			associate(/* models */) {
+			associate(models) {
 				// associations can be defined here
+				Book.hasMany(models.Loan, {foreignKey: 'book_id'});
 			}
 		}
 	});

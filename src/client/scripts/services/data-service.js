@@ -19,6 +19,17 @@
 				});
 			};
 
+			this.getAvailableBooks = function () {
+				return new Promise((resolve, reject) => {
+					$http.get(`${baseUrl}/api/books/available`)
+						.then(successResponse => {
+							resolve(successResponse.data);
+						}, errorResponse => {
+							reject(errorResponse);
+						});
+				});
+			};
+
 			this.getBook = function (bookId) {
 				return new Promise((resolve, reject) => {
 					$http.get(`${baseUrl}/api/books/${bookId}`)

@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const sequelize = require('sequelize'); // eslint-disable-line
 
 const Book = require('../db/models').Book;
 
@@ -28,6 +29,30 @@ function routes() {
 			// Get all books
 			Book.findAll({where: {active: true}})
 				.then(books => {
+					res.json(books);
+				})
+				.catch(error => {
+					res.status(500).json(error);
+				});
+		});
+
+	// Get all available books (none with loans)
+	router.route('/available')
+		.get((req, res) => {
+			Book.findAll({
+				where: {
+					active: true
+				},
+				include: [{
+					model: Loan,
+					required: false,
+					where: {active: true}
+				}]
+			})
+				.then(books => {
+					books = books.filter(book => {
+						return !book.Loans || book.Loans.length === 0;
+					});
 					res.json(books);
 				})
 				.catch(error => {

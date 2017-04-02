@@ -13,7 +13,7 @@
 				templateUrl: 'templates/home.html'
 			})
 			.state('books', {
-				url: '/books',
+				url: '/books/:type',
 				controller: 'BooksController',
 				templateUrl: 'templates/books/books.html'
 			})
@@ -69,7 +69,7 @@
 				templateUrl: 'templates/patrons/patron-detail.html'
 			})
 			.state('loans', {
-				url: '/loans',
+				url: '/loans/:type',
 				controller: 'LoansController',
 				templateUrl: 'templates/loans/loans.html'
 			})

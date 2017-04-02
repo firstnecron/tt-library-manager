@@ -1,6 +1,6 @@
 <h1>Loans</h1>
 <p> <a ui-sref="loans.new" class="button">Create New Loan</a></p>
-<p>Filters <a href="all_loans.html">All</a> | <a href="overdue_loans.html">Overdue</a> | <a href="checked_loans.html">Checked Out</a></p>
+<p>Filters <a ui-sref="loans">All</a> | <a ui-sref="loans({type: overdue})">Overdue</a> | <a ui-sref="loans({type: out})">Checked Out</a></p>
 <div class="">
 	<table class="table table-hover" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs">
 		<thead>

@@ -28,6 +28,49 @@ function routes() {
 					res.status(500).json(error);
 				});
 		});
+
+	/**
+	 * Middleware for single loan
+	 * Used for get, put, and remove
+	 * Retrieves 1 loan and attatches to req object
+	 */
+	router.use('/:loanId', (req, res, next) => {
+		Loan.findById(req.params.loanId)
+			.then(loan => {
+				if (loan) {
+					req.loan = loan;
+					return next();
+				}
+				return res.status(404).send('No loan found.');
+			})
+			.catch(error => {
+				res.status(500).json(error);
+			});
+	});
+
+	router.route('/:loanId')
+		.get((req, res) => {
+			res.json(req.loan);
+		})
+		.put((req, res) => {
+			req.loan.update(req.body)
+				.then(loan => {
+					res.json(loan);
+				})
+				.catch(error => {
+					res.status(500).json(error);
+				});
+		})
+		.delete((req, res) => {
+			req.loan.update({active: false})
+				.then(() => {
+					res.status(204).send('Loan removed');
+				})
+				.catch(error => {
+					res.status(500).json(error);
+				});
+		});
+
 	return router;
 }
 

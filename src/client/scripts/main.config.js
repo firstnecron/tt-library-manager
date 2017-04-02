@@ -13,7 +13,7 @@
 				templateUrl: 'templates/home.html'
 			})
 			.state('books', {
-				url: '/books/:type?',
+				url: '/books/:type',
 				controller: 'BooksController',
 				templateUrl: 'templates/books/books.html'
 			})

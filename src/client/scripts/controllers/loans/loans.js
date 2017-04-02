@@ -13,9 +13,6 @@
 					});
 			}
 
-			$scope.returnBook = function () {
-			};
-
 			// Listen to state changes to see if it is loans
 			// If so, update (re-retrieve) loans from database
 			const stateListener = $rootScope.$on('$stateChangeSuccess', (event, toState) => {

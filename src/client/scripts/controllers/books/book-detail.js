@@ -2,10 +2,25 @@
 	'use strict';
 
 	angular.module('app')
-	// eslint-disable-next-line prefer-arrow-callback
-		.controller('BookDetailController', function ($scope, $state, DataService) {
+	// eslint-disable-next-line prefer-arrow-callback, max-params
+		.controller('BookDetailController', function ($scope, $state, DataService, DTOptionsBuilder, DTColumnDefBuilder) {
 			const bookID = $state.params.id;
 			$scope.updated = false;
+
+			$scope.dtOptions = DTOptionsBuilder
+				.newOptions()
+				.withDisplayLength(10)
+				.withBootstrap()
+				.withPaginationType('full_numbers');
+
+			$scope.dtColumnDefs = [
+				DTColumnDefBuilder.newColumnDef(0),
+				DTColumnDefBuilder.newColumnDef(1),
+				DTColumnDefBuilder.newColumnDef(2),
+				DTColumnDefBuilder.newColumnDef(3),
+				DTColumnDefBuilder.newColumnDef(4),
+				DTColumnDefBuilder.newColumnDef(5).notSortable()
+			];
 
 			$scope.save = function () {
 				if ($scope.bookDetailForm.$pristine) {

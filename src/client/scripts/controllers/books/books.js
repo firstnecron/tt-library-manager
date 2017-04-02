@@ -2,8 +2,8 @@
 	'use strict';
 
 	angular.module('app')
-	// eslint-disable-next-line prefer-arrow-callback
-		.controller('BooksController', function ($rootScope, $scope, $document, DataService) {
+	// eslint-disable-next-line prefer-arrow-callback, max-params
+		.controller('BooksController', function ($rootScope, $scope, $document, DataService, DTOptionsBuilder, DTColumnDefBuilder) {
 			function getBooks() {
 				DataService.getBooks()
 					.then(books => {
@@ -12,6 +12,20 @@
 						});
 					});
 			}
+
+			$scope.dtOptions = DTOptionsBuilder
+				.newOptions()
+				.withDisplayLength(10)
+				.withBootstrap()
+				.withPaginationType('full_numbers');
+
+			$scope.dtColumnDefs = [
+				DTColumnDefBuilder.newColumnDef(0),
+				DTColumnDefBuilder.newColumnDef(1),
+				DTColumnDefBuilder.newColumnDef(2),
+				DTColumnDefBuilder.newColumnDef(3),
+				DTColumnDefBuilder.newColumnDef(4).notSortable()
+			];
 
 			// Listen to state changes to see if it is books
 			// If so, update (re-retrieve) books from database

@@ -39,14 +39,17 @@
   "dependencies": {
     "angular": "^1.6.3",
     "angular-animate": "^1.6.3",
+    "angular-datatables": "^0.6.0",
     "angular-touch": "^1.6.3",
     "angular-ui-bootstrap": "^2.5.0",
     "angular-ui-router": "^0.4.2",
     "body-parser": "^1.17.1",
     "bootstrap": "^3.3.7",
     "bootstrap.native": "^2.0.8",
+    "datatables": "^1.10.13",
     "express": "^4.15.2",
     "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
     "moment": "^2.18.1",
     "sequelize": "^3.30.2",
     "sqlite3": "^3.1.8"

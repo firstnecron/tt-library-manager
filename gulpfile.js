@@ -70,12 +70,16 @@ gulp.task('scripts:server', () => {
  */
 gulp.task('vendor:scripts', () => {
 	return gulp.src([
+		`${options.npm}/jquery/dist/jquery.js`,
 		`${options.npm}/angular/angular.js`,
 		`${options.npm}/angular-animate/angular-animate.js`,
 		`${options.npm}/angular-ui-router/release/angular-ui-router.js`,
 		`${options.npm}/angular-touch/angular-touch.js`,
 		`${options.npm}/bootstrap.native/dist/bootstrap-native.js`,
-		`${options.npm}/moment/moment.js`
+		`${options.npm}/moment/moment.js`,
+		`${options.npm}/datatables/media/js/jquery.dataTables.js`,
+		`${options.npm}/angular-datatables/dist/angular-datatables.js`,
+		`${options.npm}/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js`
 	])
 		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.concat('vendor.min.js'))
@@ -87,7 +91,9 @@ gulp.task('vendor:scripts', () => {
 gulp.task('vendor:styles', () => {
 	return gulp.src([
 		`${options.npm}/bootstrap/dist/css/bootstrap.css`,
-		`${options.npm}/font-awesome/css/font-awesome.css`
+		`${options.npm}/font-awesome/css/font-awesome.css`,
+		`${options.npm}/angular-datatables/dist/css/angular-datatables.css`,
+		`${options.npm}/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.min.css`
 	])
 		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.concat('vendor.min.css'))

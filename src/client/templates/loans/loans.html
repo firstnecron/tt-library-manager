@@ -1,8 +1,8 @@
 <h1>Loans</h1>
 <p> <a ui-sref="loans.new" class="button">Create New Loan</a></p>
 <p>Filters <a href="all_loans.html">All</a> | <a href="overdue_loans.html">Overdue</a> | <a href="checked_loans.html">Checked Out</a></p>
-<div class="table-responsive">
-	<table class="table table-hover">
+<div class="">
+	<table class="table table-hover" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs">
 		<thead>
 			<tr>
 				<th>Book</th>

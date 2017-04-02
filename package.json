@@ -2,10 +2,11 @@
   "name": "tt-library-manager",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server/index.js",
   "scripts": {
     "serve": "cd dist && node ./server",
     "serve:build": "gulp build && cd dist && node ./server",
+    "serve:build:seed": "gulp build && gulp seed_db && cd dist && node ./server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

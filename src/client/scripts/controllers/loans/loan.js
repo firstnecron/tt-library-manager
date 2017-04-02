@@ -21,6 +21,7 @@
 				modal.hide();
 			}
 
+			// Format dates using dateFormat to store in database
 			function formatDates(loan) {
 				if ($scope.returning) {
 					loan.returned_on = moment(loan.returned_on).format(dateFormat); // eslint-disable-line camelcase
@@ -80,6 +81,8 @@
 					.then(loanData => {
 						if (loanData) {
 							$scope.returning = true;
+
+							// Turn database dates into Dates
 							loanData.loaned_on = moment(loanData.loaned_on, dateFormat).toDate(); // eslint-disable-line camelcase
 							loanData.return_by = moment(loanData.return_by, dateFormat).toDate(); // eslint-disable-line camelcase
 							loanData.returned_on = new Date(); // eslint-disable-line camelcase
@@ -91,6 +94,7 @@
 					});
 			} else {
 				// New loan
+				// Get all books available to take out and patrons
 				DataService.getAvailableBooks()
 					.then(books => {
 						$scope.books = books;

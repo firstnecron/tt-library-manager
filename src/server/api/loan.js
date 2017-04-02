@@ -9,8 +9,19 @@ const Patron = require('../db/models').Patron;
 function routes() {
 	const router = new express.Router();
 	router.route('/')
-		.post((req, res) => { // eslint-disable-line
+		.post((req, res) => {
 			// Add new loan
+			if (req.body.active === undefined) {
+				req.body.active = true;
+			}
+
+			Loan.create(req.body)
+				.then(() => {
+					res.send('Added new loan');
+				})
+				.catch(error => {
+					res.status(500).json(error);
+				});
 		})
 		.get((req, res) => {
 			// Get all loans

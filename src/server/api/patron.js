@@ -10,8 +10,19 @@ const Book = require('../db/models').Book;
 function routes() {
 	const router = new express.Router();
 	router.route('/')
-		.post((req, res) => { // eslint-disable-line
+		.post((req, res) => {
 			// Add new patron
+			if (req.body.active === undefined) {
+				req.body.active = true;
+			}
+
+			Patron.create(req.body)
+				.then(() => {
+					res.send('Added new patron');
+				})
+				.catch(error => {
+					res.status(500).json(error);
+				});
 		})
 		.get((req, res) => {
 			// Get all patrons

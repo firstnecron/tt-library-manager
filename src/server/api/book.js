@@ -1,7 +1,6 @@
 'use strict';
 
 const express = require('express');
-const sequelize = require('sequelize'); // eslint-disable-line
 
 const Book = require('../db/models').Book;
 

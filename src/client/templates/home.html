@@ -5,10 +5,10 @@
 		<h3>Books</h3>
 		<div>
 			<ul>
-				<li><a href="/books/new">New Book</a></li>
-				<li><a href="all_books.html">List All</a></li>
-				<li><a href="/books?filter=overdue">List Overdue</a></li>
-				<li><a href="/books?filter=checked_out">List Checked Out</a></li>
+				<li><a ui-sref="books.new">New Book</a></li>
+				<li><a ui-sref="books({type: 'all'})">List All</a></li>
+				<li><a ui-sref="books({type: 'overdue'})">List Overdue</a></li>
+				<li><a ui-sref="books({type: 'out'})">List Checked Out</a></li>
 			</ul>
 		</div>
 	</div>
@@ -16,8 +16,8 @@
 		<h3>Patrons</h3>
 		<div>
 			<ul>
-				<li><a href="/patrons/new">New Patron</a></li>
-				<li><a href="all_patrons.html">List All</a></li>
+				<li><a ui-sref="patrons.new">New Patron</a></li>
+				<li><a ui-sref="patrons">List All</a></li>
 			</ul>
 		</div>
 	</div>
@@ -25,10 +25,10 @@
 		<h3>Loans</h3>
 		<div>
 			<ul>
-				<li><a href="new_loan.html">New Loan</a></li>
-				<li><a href="all_loans.html">List All</a></li>
-				<li><a href="overdue_loans.html">List Overdue</a></li>
-				<li><a href="checked_loans.html">List Checked Out</a></li>
+				<li><a ui-sref="loans.new">New Loan</a></li>
+				<li><a ui-sref="loans({type: 'all'})">List All</a></li>
+				<li><a ui-sref="loans({type: 'overdue'})">List Overdue</a></li>
+				<li><a ui-sref="loans({type: 'out'})">List Checked Out</a></li>
 			</ul>
 		</div>
 	</div>

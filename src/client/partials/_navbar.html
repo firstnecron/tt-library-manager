@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="/">
+			<a class="navbar-brand" ui-sref="home">
 				<i class="fa fa-book" aria-hidden="true"></i>
 				Library Manager
 			</a>
@@ -12,13 +12,13 @@
 					<a ui-sref="home">Home</a>
 				</li>
 				<li ui-sref-active="active">
-					<a ui-sref="books">Books</a>
+					<a ui-sref="books({type: 'all'})">Books</a>
 				</li>
 				<li ui-sref-active="active">
 					<a ui-sref="patrons">Patrons</a>
 				</li>
 				<li ui-sref-active="active">
-					<a ui-sref="loans">Loans</a>
+					<a ui-sref="loans({type: 'all'})">Loans</a>
 				</li>
 			</ul>
 		</div>

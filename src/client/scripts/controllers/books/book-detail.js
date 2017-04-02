@@ -27,9 +27,6 @@
 				$state.go('books');
 			};
 
-			$scope.returnBook = function () {
-			};
-
 			if (bookID) {
 				// Editing book
 				DataService.getBook(bookID)

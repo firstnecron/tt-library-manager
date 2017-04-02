@@ -70,7 +70,7 @@
 			<td>{{loan.return_by}}</td>
 			<td>{{loan.returned_on}}</td>
 			<td>
-				<button ng-if="!loan.returned_on" class="btn btn-primary" type="button" ng-click="returnBook()" title="Return Book">
+				<button ng-if="!loan.returned_on" class="btn btn-primary" type="button" ui-sref="loans.return({id: loan.id})" title="Return Book">
 					<i class="fa fa-check-square-o" aria-hidden="true"></i> Return Book
 				</button>
 			</td>

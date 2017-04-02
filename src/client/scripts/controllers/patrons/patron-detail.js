@@ -27,9 +27,6 @@
 				$state.go('patrons');
 			};
 
-			$scope.returnBook = function () {
-			};
-
 			if (patronID) {
 				// Editing patron
 				DataService.getPatron(patronID)

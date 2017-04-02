@@ -33,7 +33,7 @@
 			}
 
 			function goBackState() {
-				$state.go($state.params.fromState || '^');
+				$state.go('^');
 			}
 
 			$scope.save = function () {

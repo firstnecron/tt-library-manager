@@ -64,7 +64,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-primary" type="button" ng-click="save()" ng-disabled="patronForm.$invalid">Save</button>
-				<button class="btn btn-default" type="button" ng-click="cancel()" ng-hide="cancelClicked">Cancel</button>
+				<button class="btn btn-default" type="button" ng-click="cancel()" ng-hide="cancelClicked" confirm-cancel-button>Cancel</button>
 				<button class="btn btn-danger" type="button" ng-click="confirm()" ng-show="cancelClicked">{{confirmButtonText}}</button>
 			</div>
 		</div>

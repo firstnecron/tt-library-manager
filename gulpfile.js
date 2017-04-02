@@ -26,6 +26,11 @@ gulp.task('html', () => {
 		.pipe(gulp.dest(`${options.dist}/client/`));
 });
 
+gulp.task('seed_db', () => {
+	return gulp.src(`library.db`)
+		.pipe(gulp.dest(`${options.dist}/`));
+});
+
 /*
 	Scripts
  */
@@ -127,6 +132,10 @@ gulp.task('clean:client', () => {
 
 gulp.task('clean:server', () => {
 	return del([`${options.dist}/server`]);
+});
+
+gulp.task('clean:db', () => {
+	return del([`${options.dist}/*.db`]);
 });
 
 /*

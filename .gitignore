@@ -3,7 +3,7 @@
 node_modules
 
 #ignore database file
-*.db
+# *.db
 
 #ignore dist (build) folder
 dist

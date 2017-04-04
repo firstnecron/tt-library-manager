@@ -37,6 +37,7 @@
 					DataService.updatePatron(patronID, $scope.patron)
 						.then(() => {
 							$scope.updated = true;
+							goBack();
 							$scope.$apply();
 						})
 						.catch(() => {

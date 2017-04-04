@@ -37,6 +37,7 @@
 					DataService.updateBook(bookID, $scope.book)
 						.then(() => {
 							$scope.updated = true;
+							goBack();
 							$scope.$apply();
 						})
 						.catch(() => {

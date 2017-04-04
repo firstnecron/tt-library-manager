@@ -13,7 +13,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="book in ::books">
+			<tr ng-repeat="book in books">
 				<td><a ui-sref="book-detail({id: book.id})">{{book.title}}</a></td>
 				<td>{{book.author}}</td>
 				<td>{{book.genre}}</td>
